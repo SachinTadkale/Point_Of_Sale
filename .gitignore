@@ -1,0 +1,9 @@
+# Ignore virtual environment
+myenv/
+
+# Ignore compiled files
+__pycache__/
+
+# Ignore environment-specific settings
+.env
+*.sqlite3
