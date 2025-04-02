@@ -1,43 +1,22 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <link rel="stylesheet" href="{% static 'css/base.css' %}">  <!-- Global CSS -->
-  {% block extra_css %}{% endblock extra_css %}  <!-- Allows extra CSS -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>{% block title %}My Site{% endblock title %}</title>
-</head>
-<body>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <!-- Global CSS -->
+    {% block extra_css %}{% endblock extra_css %}
+    <!-- Allows extra CSS -->
 
-  <!-- Navbar -->
-  <nav>
-    <div class="navbar">
-      <div class="logo">
-        <a href="/">My Site</a>
-      </div>
-      <div class="nav-links">
-        <ul>
-          {% if user.is_authenticated %}
-            <!-- Navbar for logged-in users -->
-            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
-            <li><a href="{% url 'logout' %}">Logout</a></li>
-          {% else %}
-            <!-- Navbar for visitors -->
-            <li><a href="{% url 'landing' %}">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="{% url 'login' %}">Login</a></li>
-            <li><a href="{% url 'signup' %}">SignUp</a></li>
-          {% endif %}
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  {% block content %}{% endblock content %}
-
-</body>
+    <title>{% block title %}My Site{% endblock title %}</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    {% block navbar %}{% endblock navbar %}
+     {% block content %}{% endblock content %} 
+    {% block footer %}{% endblock footer %}
+    {% block js_script %}{% endblock js_script %}
+  </body>
 </html>

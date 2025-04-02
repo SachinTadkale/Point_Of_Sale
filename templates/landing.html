@@ -1,25 +1,90 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
+
+{% block extra_css %} 
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/landing.css' %}" />
+{% endblock extra_css %} 
+
 {% block navbar %}
-<nav>
-  <div class="navbar">
-    <div class="logo">Logo</div>
-    <div class="nav-links">
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="{% url 'login'%}">Login</a></li>
-        <li><a href="{% url 'signup'%}">SignUp</a></li>
-      </ul>
+<header>
+  <nav>
+    <div class="logo">
+      <a href="/index.html"
+        ><img src="{% static "img/tree.png" %}" alt="Company Logo"></a
+      >
     </div>
-  </div>
-</nav>
-{% endblock navbar %}
+    <ul>
+      {% if user.is_authenticated %}
+            <!-- Navbar for logged-in users -->
+            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+            <!-- Navbar for visitors -->
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+
+          {% endif %}
+    </ul>
+    <div class="auth-buttons">
+      <a href="{% url 'login' %}" class="btn-signin">Sign In</a>
+      <a href="{% url 'signup' %}" class="btn-signup">Sign Up</a>
+    </div>
+  </nav>
+</header>
+{% endblock navbar %} 
 
 {% block content %}
 <main>
-  <section id="home">Home</section>
-  <section id="about">About</section>
-  <section id="contact">Contact</section>
- </main>
+  <section id="home" class="hero">
+    <h1>Welcome to Our POS System</h1>
+    <p>Efficient and Reliable Point of Sale Solution</p>
+    <a href="#" class="btn">Get Started</a>
+  </section>
+
+  <section id="about">
+    <div class="about-container">
+      <!-- Left side: About Us details -->
+      <div class="about-text">
+        <h2>About Us</h2>
+        <p>
+          We are a technology company providing the best POS system for small
+          and large businesses. Our goal is to make transactions simple and
+          efficient.
+        </p>
+      </div>
+      <!-- Right side: Image -->
+      <div class="about-image">
+        <img src="{% static "img/about.jpg" %}" alt="About Us Image">
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>
+      If you have any questions or want to get in touch, please fill out the
+      contact form below:
+    </p>
+    <form class="contact-form">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea
+        name="message"
+        placeholder="Your Message"
+        rows="5"
+        required
+      ></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+</main>
 {% endblock content %}
+ 
+{% block footer %}
+<footer id="footer">
+  <p>&copy; 2025 POS System. All Rights Reserved.</p>
+</footer>
+{% endblock footer %}
+{% comment %} {% block js_script %}
+<script src="{% static 'js/footer.js' %}"></script>{% endblock js_script %} {% endcomment %}
