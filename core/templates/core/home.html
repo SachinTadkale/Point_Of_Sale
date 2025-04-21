@@ -1,13 +1,33 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{% static "core/css/home.css" %}">
-  <title>Document</title>
-</head>
-<body>
-  Home Page
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h3>Quick Actions</h3>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a href="{% url 'products:inventory' %}" class="btn btn-primary">Manage Products</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3>System Overview</h3>
+            </div>
+            <div class="card-body">
+                <p>Welcome to the Point of Sale System. Here you can:</p>
+                <ul>
+                    <li>Manage your product inventory</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

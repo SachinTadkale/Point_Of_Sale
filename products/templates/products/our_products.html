@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Our Products{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="h3">Our Products</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-4 col-lg-3 mb-4">
+            <div class="card h-100">
+                <div class="card-img-container" style="height: 150px; overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                    {% if product.image %}
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}" style="max-height: 150px; width: auto; object-fit: contain;">
+                    {% else %}
+                    <img src="{% static 'images/default-product.png' %}" class="card-img-top" alt="No image available" style="max-height: 150px; width: auto; object-fit: contain;">
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <h5 class="card-title mb-0">{{ product.name }}</h5>
+                        <span class="badge {% if product.stock_quantity > 0 %}bg-success{% else %}bg-danger{% endif %}">
+                            {% if product.stock_quantity > 0 %}In Stock{% else %}Out of Stock{% endif %}
+                        </span>
+                    </div>
+                    <div class="description-container">
+                        <p class="card-text text-muted description-text" data-full-text="{{ product.description }}">
+                            {{ product.description|truncatewords:20 }}
+                        </p>
+                        <button class="btn btn-link btn-sm p-0 read-more-btn" onclick="toggleDescription(this)">
+                            Read More
+                        </button>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="h5 mb-0">₹{{ product.price|floatformat:2 }}</span>
+                        {% if product.stock_quantity > 0 %}
+                            <span class="text-success">
+                                <i class="fas fa-check-circle me-1"></i>{{ product.stock_quantity }} units
+                            </span>
+                        {% else %}
+                            <span class="text-danger">
+                                <i class="fas fa-times-circle me-1"></i>Unavailable
+                            </span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="card-footer bg-transparent">
+                    <div class="d-grid">
+                        {% if product.stock_quantity > 0 %}
+                            <a href="{% url 'products:product_detail' product.id %}" class="btn btn-primary">
+                                <i class="fas fa-shopping-cart me-1"></i> Buy Now
+                            </a>
+                        {% else %}
+                            <button class="btn btn-secondary" disabled>
+                                <i class="fas fa-times-circle me-1"></i> Out of Stock
+                            </button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info">
+                No products available at the moment.
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+    .description-container {
+        position: relative;
+        margin-bottom: 1rem;
+    }
+    
+    .description-text {
+        margin-bottom: 0;
+        transition: max-height 0.3s ease-out;
+        overflow: hidden;
+    }
+    
+    .description-text.expanded {
+        max-height: none;
+    }
+    
+    .read-more-btn {
+        color: #0d6efd;
+        text-decoration: none;
+        cursor: pointer;
+        font-size: 0.875rem;
+    }
+    
+    .read-more-btn:hover {
+        color: #0a58ca;
+        text-decoration: underline;
+    }
+</style>
+
+<script>
+    function toggleDescription(button) {
+        const container = button.parentElement;
+        const textElement = container.querySelector('.description-text');
+        const fullText = textElement.getAttribute('data-full-text');
+        
+        if (textElement.classList.contains('expanded')) {
+            // Collapse
+            textElement.textContent = fullText.substring(0, 100) + '...';
+            button.textContent = 'Read More';
+            textElement.classList.remove('expanded');
+        } else {
+            // Expand
+            textElement.textContent = fullText;
+            button.textContent = 'Read Less';
+            textElement.classList.add('expanded');
+        }
+    }
+</script>
+{% endblock %} 
