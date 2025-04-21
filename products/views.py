@@ -18,11 +18,11 @@ def our_products(request):
     return render(request, 'products/our_products.html', {'products': products})
 
 @login_required
-@user_passes_test(is_admin, login_url='core:home')
+@user_passes_test(is_admin, login_url='/auth/login/')
 def inventory(request):
     if not request.user.role == 'admin':
         messages.error(request, 'You do not have permission to access the inventory.')
-        return redirect('core:home')
+        return redirect('products:our_products')
     products = Product.objects.all()
     return render(request, 'products/inventory.html', {'products': products})
 
@@ -32,7 +32,7 @@ def product_detail(request, pk):
     return render(request, 'products/product_detail.html', {'product': product})
 
 @login_required
-@user_passes_test(is_admin, login_url='core:home')
+@user_passes_test(is_admin, login_url='/auth/login/')
 def product_create(request):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
@@ -45,7 +45,7 @@ def product_create(request):
     return render(request, 'products/product_form.html', {'form': form, 'title': 'Add Product'})
 
 @login_required
-@user_passes_test(is_admin, login_url='core:home')
+@user_passes_test(is_admin, login_url='/auth/login/')
 def product_update(request, pk):
     product = get_object_or_404(Product, pk=pk)
     if request.method == 'POST':
@@ -56,10 +56,10 @@ def product_update(request, pk):
             return redirect('products:inventory')
     else:
         form = ProductForm(instance=product)
-    return render(request, 'products/product_form.html', {'form': form, 'title': 'Edit Product'})
+    return render(request, 'products/product_form.html', {'form': form, 'title': 'Update Product'})
 
 @login_required
-@user_passes_test(is_admin, login_url='core:home')
+@user_passes_test(is_admin, login_url='/auth/login/')
 def product_delete(request, pk):
     product = get_object_or_404(Product, pk=pk)
     if request.method == 'POST':

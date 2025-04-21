@@ -40,9 +40,6 @@ INSTALLED_APPS = [
     'authentication',
     'core',
     'products',
-    # Temporarily commented out
-    # 'reports',
-    # 'sales',
 ]
 
 MIDDLEWARE = [
@@ -130,9 +127,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Authentication settings
 AUTH_USER_MODEL = 'authentication.CustomUser'
-LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/home/'
-LOGOUT_REDIRECT_URL = '/login/'
+LOGIN_URL = '/auth/login/'
+LOGIN_REDIRECT_URL = '/products/our_products/'
+LOGOUT_REDIRECT_URL = '/auth/login/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
