@@ -14,8 +14,8 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
-  color: #333;
+  background-color: #1e1e1e;
+  color: #CCCCCC;
 }
 
 /* Navbar */
@@ -70,7 +70,6 @@ main {
 /* Sections */
 main section {
   height: 100vh;
-  background-color: aquamarine;
   color: black;
   border: 3px solid black;
   display: flex;

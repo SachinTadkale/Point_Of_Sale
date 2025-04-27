@@ -5,35 +5,6 @@
 <link rel="stylesheet" href="{% static 'css/landing.css' %}" />
 {% endblock extra_css %} 
 
-{% block navbar %}
-<header>
-  <nav>
-    <div class="logo">
-      <a href="/index.html"
-        ><img src="{% static "img/tree.png" %}" alt="Company Logo"></a
-      >
-    </div>
-    <ul>
-      {% if user.is_authenticated %}
-            <!-- Navbar for logged-in users -->
-            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
-            <li><a href="{% url 'logout' %}">Logout</a></li>
-          {% else %}
-            <!-- Navbar for visitors -->
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-
-          {% endif %}
-    </ul>
-    <div class="auth-buttons">
-      <a href="{% url 'login' %}" class="btn-signin">Sign In</a>
-      <a href="{% url 'signup' %}" class="btn-signup">Sign Up</a>
-    </div>
-  </nav>
-</header>
-{% endblock navbar %} 
-
 {% block content %}
 <main>
   <section id="home" class="hero">
@@ -42,20 +13,34 @@
     <a href="#" class="btn">Get Started</a>
   </section>
 
-  <section id="about">
-    <div class="about-container">
-      <!-- Left side: About Us details -->
-      <div class="about-text">
-        <h2>About Us</h2>
+  <section id="development-team">
+    <div class="team-container">
+      <h2>Development Team</h2>
+      <div class="team-content">
         <p>
-          We are a technology company providing the best POS system for small
-          and large businesses. Our goal is to make transactions simple and
-          efficient.
+          This Point of Sale system has been meticulously developed by a dedicated team of students under expert guidance. 
+          The project represents a perfect blend of innovation and practical implementation, designed to meet modern business needs.
         </p>
-      </div>
-      <!-- Right side: Image -->
-      <div class="about-image">
-        <img src="{% static "img/about.jpg" %}" alt="About Us Image">
+        <div class="team-members">
+          <div class="team-member">
+            <h3>Developers</h3>
+            <ul>
+              <li>Sachin Tadkale</li>
+              <li>Maruti Auti</li>
+              <li>Sakshi Kale</li>
+            </ul>
+          </div>
+          <div class="team-member">
+            <h3>Project Guide</h3>
+            <ul>
+              <li>Prof. Sachin Zurange</li>
+            </ul>
+          </div>
+        </div>
+        <p class="team-message">
+          Our team has worked tirelessly to create a robust, user-friendly POS system that combines cutting-edge technology with practical business solutions. 
+          This project reflects our commitment to excellence and innovation in software development.
+        </p>
       </div>
     </div>
   </section>
@@ -66,15 +51,36 @@
       If you have any questions or want to get in touch, please fill out the
       contact form below:
     </p>
-    <form class="contact-form">
-      <input type="text" name="name" placeholder="Your Name" required />
-      <input type="email" name="email" placeholder="Your Email" required />
-      <textarea
-        name="message"
-        placeholder="Your Message"
-        rows="5"
-        required
-      ></textarea>
+    {% if messages %}
+      <div class="messages">
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+    <form class="contact-form" method="post" action="{% url 'core:contact' %}">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="id_name">Name:</label>
+        {{ contact_form.name }}
+        {% if contact_form.name.errors %}
+          <div class="form-error">{{ contact_form.name.errors.0 }}</div>
+        {% endif %}
+      </div>
+      <div class="form-group">
+        <label for="id_email">Email:</label>
+        {{ contact_form.email }}
+        {% if contact_form.email.errors %}
+          <div class="form-error">{{ contact_form.email.errors.0 }}</div>
+        {% endif %}
+      </div>
+      <div class="form-group">
+        <label for="id_message">Message:</label>
+        {{ contact_form.message }}
+        {% if contact_form.message.errors %}
+          <div class="form-error">{{ contact_form.message.errors.0 }}</div>
+        {% endif %}
+      </div>
       <button type="submit">Send Message</button>
     </form>
   </section>
@@ -83,7 +89,24 @@
  
 {% block footer %}
 <footer id="footer">
-  <p>&copy; 2025 POS System. All Rights Reserved.</p>
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>About POS System</h3>
+      <p>A modern Point of Sale solution developed by dedicated students under expert guidance.</p>
+    </div>
+    <div class="footer-section">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#development-team">Team</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 POS System. Developed by Sachin Tadkale, Maruti Auti, and Sakshi Kale under the guidance of Prof. Sachin Zurange. All Rights Reserved.</p>
+  </div>
 </footer>
 {% endblock footer %}
 {% comment %} {% block js_script %}

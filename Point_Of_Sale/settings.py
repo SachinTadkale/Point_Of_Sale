@@ -108,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -133,3 +133,11 @@ LOGOUT_REDIRECT_URL = '/auth/login/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'sachintadkale1221@gmail.com'
+EMAIL_HOST_PASSWORD = 'jjab znjs unwf lvuo'
+DEFAULT_FROM_EMAIL = 'Sachin Tadkale <sachintadkale1221@gmail.com>'

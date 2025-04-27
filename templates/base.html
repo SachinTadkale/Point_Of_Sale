@@ -7,122 +7,133 @@
 
   <title>{% block title %}Point of Sale{% endblock %}</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  {% block extra_css %}{% endblock %}
   <style>
+    *::selection{
+      background-color: #CCCCCC !important;
+      color: #1e1e1e !important;
+    }
     :root {
-      --primary-color: #2c3e50;
-      --secondary-color: #3498db;
+      --primary-color: #1e1e1e;
+      --secondary-color: #CCCCCC;
       --accent-color: #e74c3c;
-      --light-color: #ecf0f1;
-      --dark-color: #2c3e50;
+      --light-color: #1e1e1e;
+      --dark-color: #1e1e1e;
     }
 
     html, body {
       height: 100%;
       margin: 0;
-    }
-
-    body {
-      background-color: var(--light-color);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #1e1e1e !important;
+      color: #CCCCCC !important;
+      font-family: 'JetBrains Mono', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
     }
 
-    .navbar {
-      background-color: var(--primary-color);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    body {
+      background-color: #1e1e1e !important;
+      color: #CCCCCC !important;
     }
 
-    .navbar-brand, .nav-link {
-      color: white !important;
+    
+    
+    .navbar, .footer, .page-header, .content-wrapper, .card, .table, .alert, .form-control, .table th, .table td {
+      background-color: #1e1e1e !important;
+      color: #CCCCCC !important;
+      border-color: #292929 !important;
     }
 
-    .card {
-      border: none;
+    .navbar-brand, .nav-link, .navbar-nav .nav-link, .footer, .footer p, .footer a {
+      color: #CCCCCC !important;
+    }
+
+    .navbar, .footer {
+      box-shadow: none !important;
+    }
+
+    .card, .table, .page-header, .alert {
       border-radius: 10px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid #292929 !important;
+      box-shadow: none !important;
     }
 
-    .card:hover {
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-    }
-
-    .btn {
+    .btn, .btn-primary, .btn-danger {
+      background-color: #292929 !important;
+      color: #CCCCCC !important;
+      border: 1px solid #CCCCCC !important;
       border-radius: 5px;
       padding: 8px 16px;
       transition: all 0.3s ease;
       font-weight: 500;
     }
-
-    .btn-primary {
-      background-color: var(--secondary-color);
-      border-color: var(--secondary-color);
-    }
-
-    .btn-primary:hover {
-      background-color: #2980b9;
-      border-color: #2980b9;
+    .btn:hover, .btn-primary:hover, .btn-danger:hover {
+      background-color: #333333 !important;
+      color: #e74c3c !important;
+      border-color: #e74c3c !important;
       transform: translateY(-2px);
-    }
-
-    .btn-danger {
-      background-color: var(--accent-color);
-      border-color: var(--accent-color);
-    }
-
-    .btn-danger:hover {
-      background-color: #c0392b;
-      border-color: #c0392b;
-      transform: translateY(-2px);
-    }
-
-    .table {
-      background-color: white;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .table th {
-      background-color: var(--primary-color);
-      color: white;
     }
 
     .form-control {
+      background-color: #1e1e1e !important;
+      color: #CCCCCC !important;
+      border: 1px solid #292929 !important;
       border-radius: 5px;
-      border: 1px solid #ddd;
       padding: 10px;
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
-
     .form-control:focus {
-      border-color: var(--secondary-color);
-      box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+      border-color: #e74c3c !important;
+      box-shadow: 0 0 0 0.2rem rgba(231, 76, 60, 0.15) !important;
     }
 
     .alert {
       border-radius: 5px;
-      border: none;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      border: 1px solid #292929 !important;
+      background-color: #232323 !important;
+      color: #CCCCCC !important;
+      box-shadow: none !important;
+    }
+
+    .table th {
+      background-color: #232323 !important;
+      color: #CCCCCC !important;
+    }
+    .table td {
+      background-color: #1e1e1e !important;
+      color: #CCCCCC !important;
     }
 
     .page-header {
-      background-color: white;
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      background-color: #1e1e1e !important;
+      color: #CCCCCC !important;
+      border: 1px solid #292929 !important;
+      box-shadow: none !important;
     }
 
     .footer {
-      background-color: var(--primary-color);
-      color: white;
+      background-color: #1e1e1e !important;
+      color: #CCCCCC !important;
       padding: 20px 0;
       margin-top: auto;
       width: 100%;
+      border-top: 1px solid #292929 !important;
+    }
+    .footer a {
+      color: #CCCCCC !important;
+    }
+    .footer a:hover {
+      color: #e74c3c !important;
+    }
+
+    .content-wrapper {
+      flex: 1 0 auto;
+      padding-bottom: 2rem;
+      background-color: #1e1e1e !important;
+      color: #CCCCCC !important;
     }
 
     /* Animation for messages */
@@ -141,10 +152,56 @@
       animation: slideIn 0.5s ease-out;
     }
 
-    /* Main content wrapper */
-    .content-wrapper {
-      flex: 1 0 auto;
-      padding-bottom: 2rem;
+    select, select.form-control, select.form-select {
+      background-color: #1e1e1e !important;
+      color: #CCCCCC !important;
+      border: 1.5px solid #292929 !important;
+      border-radius: 5px !important;
+      box-shadow: none !important;
+      transition: border-color 0.3s;
+    }
+    select:focus, select.form-control:focus, select.form-select:focus {
+      border-color: #e74c3c !important;
+      outline: none !important;
+      box-shadow: 0 0 0 0.15rem rgba(231, 76, 60, 0.15) !important;
+    }
+    select option {
+      background-color: #1e1e1e !important;
+      color: #CCCCCC !important;
+    }
+
+    /* Autofill and autocomplete styling for dark mode */
+    input:-webkit-autofill,
+    input:-webkit-autofill:focus,
+    input:-webkit-autofill:hover,
+    input:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0 1000px #1e1e1e inset !important;
+      box-shadow: 0 0 0 1000px #1e1e1e inset !important;
+      -webkit-text-fill-color: #CCCCCC !important;
+      color: #CCCCCC !important;
+      border: 1.5px solid #e74c3c !important;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+    
+    /* Firefox autocomplete dropdown */
+    input:-moz-autofill,
+    input:-moz-autofill:focus {
+      box-shadow: 0 0 0 1000px #1e1e1e inset !important;
+      -moz-text-fill-color: #CCCCCC !important;
+      color: #CCCCCC !important;
+      border: 1.5px solid #e74c3c !important;
+    }
+    
+    /* Style Chrome autocomplete dropdown (best effort) */
+    input::-webkit-input-placeholder {
+      color: #CCCCCC !important;
+      opacity: 1;
+    }
+    
+    /* Style datalist dropdown (for Chrome/Edge) */
+    input::-webkit-calendar-picker-indicator,
+    input::-webkit-input-list-button {
+      filter: invert(1);
     }
   </style>
 </head>
@@ -153,7 +210,7 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark mb-4">
     <div class="container">
-      <a class="navbar-brand" href="{% url 'core:home' %}">
+      <a class="navbar-brand">
         <i class="fas fa-store me-2"></i>Point of Sale
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -161,22 +218,29 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'core:home' %}">
-              <i class="fas fa-home me-1"></i>Home
-            </a>
-          </li>
+          {% if user.is_authenticated and user.role == 'customer' %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'products:our_products' %}">
               <i class="fas fa-store me-1"></i>Our Products
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="{% url 'products:my_orders' %}">
+              <i class="fas fa-box me-1"></i>My Orders
+            </a>
+          </li>
+          {% endif %}
+          {% if user.is_authenticated and user.role == 'admin' %}
+          <li class="nav-item">
             <a class="nav-link" href="{% url 'products:inventory' %}">
               <i class="fas fa-warehouse me-1"></i>Inventory
             </a>
           </li>
-          {% if user.is_authenticated and user.role == 'admin' %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'products:all_orders' %}">
+                <i class="fas fa-list me-1"></i>All Orders (Admin)
+              </a>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'authentication:user_list' %}">
                 <i class="fas fa-users-cog me-1"></i>User Management

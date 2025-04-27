@@ -39,15 +39,7 @@
                     </div>
                     <div class="d-flex justify-content-between align-items-center">
                         <span class="h5 mb-0">₹{{ product.price|floatformat:2 }}</span>
-                        {% if product.stock_quantity > 0 %}
-                            <span class="text-success">
-                                <i class="fas fa-check-circle me-1"></i>{{ product.stock_quantity }} units
-                            </span>
-                        {% else %}
-                            <span class="text-danger">
-                                <i class="fas fa-times-circle me-1"></i>Unavailable
-                            </span>
-                        {% endif %}
+                       
                     </div>
                 </div>
                 <div class="card-footer bg-transparent">
@@ -101,6 +93,63 @@
     .read-more-btn:hover {
         color: #0a58ca;
         text-decoration: underline;
+    }
+
+    .card {
+        background: #1e1e1e !important;
+        color: #CCCCCC !important;
+        border: 1.5px solid #292929 !important;
+        border-radius: 16px !important;
+        box-shadow: none !important;
+        transition: border-color 0.2s;
+        border-top: 1.5px solid #292929 !important;
+        padding-bottom: 20px;
+        overflow: hidden;
+    }
+    .card:hover {
+        border-top: 1.5px solid #e74c3c !important;
+    }
+    .card-title, .card-text, .h5, .h3 {
+        color: #CCCCCC !important;
+    }
+    .card-footer {
+        background: #1e1e1e !important;
+        border-top: 1px solid #292929 !important;
+    }
+    .btn-link.read-more-btn, .btn-link.read-more-btn:hover {
+        border: none !important;
+        background: transparent !important;
+        color: #CCCCCC !important;
+        border-radius: 16px;
+        padding: 2px 12px;
+        font-size: 0.95rem;
+        transition: background 0.2s, color 0.2s;
+        text-decoration: none !important;
+    }
+    .btn-secondary[disabled], .btn-secondary:disabled {
+        background: #1e1e1e !important;
+        color: #CCCCCC !important;
+        border: 1.5px solid #292929 !important;
+        opacity: 1 !important;
+    }
+    .badge.bg-danger {
+        background: #e74c3c !important;
+        color: #fff !important;
+        font-weight: 600;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        padding: 0.4em 0.8em;
+    }
+    .badge.bg-success {
+        background: #27ae60 !important;
+        color: #fff !important;
+        font-weight: 600;
+        border-radius: 8px;
+        font-size: 0.95rem;
+        padding: 0.4em 0.8em;
+    }
+    .description-text {
+        color: #888 !important;
     }
 </style>
 

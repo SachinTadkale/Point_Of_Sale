@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Purchase Confirmation</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { background: #f9f9f9; padding: 20px; border-radius: 8px; }
+        .header { color: #2c3e50; }
+        .details { margin-top: 20px; }
+        .footer { margin-top: 30px; color: #888; font-size: 13px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="header">Thank you for your purchase!</h2>
+        <div class="details">
+            <p>
+                <strong>Product:</strong> {{ product.name }}<br>
+                <strong>Price:</strong> ₹{{ product.price|floatformat:2 }}<br>
+                <strong>Order ID:</strong> {{ order.id }}<br>
+                <strong>Status:</strong> {{ order.get_status_display }}
+            </p>
+        </div>
+        <p>
+            If you have any questions, just reply to this email.<br>
+            <br>
+            Regards,<br>
+            Point Of Sale Team
+        </p>
+        <div class="footer">
+            &copy; {{ now|date:"Y" }} Point Of Sale. All rights reserved.
+        </div>
+    </div>
+</body>
+</html>

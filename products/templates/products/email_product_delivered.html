@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Product Delivered</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { background: #f9f9f9; padding: 20px; border-radius: 8px; }
+        .header { color: #27ae60; }
+        .details { margin-top: 20px; }
+        .footer { margin-top: 30px; color: #888; font-size: 13px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="header">Your product has been delivered!</h2>
+        <div class="details">
+            <p>
+                <strong>Product:</strong> {{ order.product.name }}<br>
+                <strong>Order ID:</strong> {{ order.id }}<br>
+                <strong>Delivered At:</strong> {{ now|date:"D, d M Y H:i:s" }}
+            </p>
+        </div>
+        <p>
+            Thank you for shopping with us!<br>
+            If you have any questions, just reply to this email.<br>
+            <br>
+            Regards,<br>
+            Point Of Sale Team
+        </p>
+        <div class="footer">
+            &copy; {{ now|date:"Y" }} Point Of Sale. All rights reserved.
+        </div>
+    </div>
+</body>
+</html>

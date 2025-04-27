@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container py-4">
+    <h2>Dummy Payment for {{ product.name }}</h2>
+    <p>Price: ₹{{ product.price|floatformat:2 }}</p>
+    <form method="post" action="{% url 'products:buy_now' product.pk %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Pay Now</button>
+    </form>
+</div>
+{% endblock %} 

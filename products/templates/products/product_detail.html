@@ -64,9 +64,9 @@
 
                     <div class="mt-4">
                         {% if product.stock_quantity > 0 %}
-                            <button class="btn btn-success btn-lg">
+                            <a href="{% url 'products:buy_now' product.pk %}" class="btn btn-success btn-lg">
                                 <i class="fas fa-shopping-cart me-2"></i>Buy Now - ₹{{ product.price|floatformat:2 }}
-                            </button>
+                            </a>
                         {% else %}
                             <button class="btn btn-secondary btn-lg" disabled>
                                 <i class="fas fa-times-circle me-2"></i>Out of Stock

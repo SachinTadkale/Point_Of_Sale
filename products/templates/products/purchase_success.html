@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container py-4">
+    <h2>Thank you for your purchase!</h2>
+    <p>You have successfully purchased <strong>{{ product.name }}</strong>.</p>
+    <a href="{% url 'products:our_products' %}" class="btn btn-success">Back to Products</a>
+</div>
+{% endblock %} 

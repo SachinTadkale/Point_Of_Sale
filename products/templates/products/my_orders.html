@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h2>My Orders</h2>
+<table class="table">
+    <thead>
+        <tr class="align-middle">
+            <th>Product Image</th>
+            <th>Product</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Ordered At</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for order in orders %}
+        <tr class="align-middle">
+            <td>
+                {% if order.product.image %}
+                    <img src="{{ order.product.image.url }}" alt="{{ order.product.name }}" style="width: 60px; height: 60px; object-fit: contain; border-radius: 8px;">
+                {% else %}
+                    <img src="{% static 'images/default-product.png' %}" alt="No image" style="width: 60px; height: 60px; object-fit: contain; border-radius: 8px;">
+                {% endif %}
+            </td>
+            <td>{{ order.product.name }}</td>
+            <td>₹{{ order.amount }}</td>
+            <td>
+                <span class="badge {% if order.status == 'delivered' %}bg-success{% else %}bg-warning text-dark{% endif %}">
+                    {{ order.get_status_display }}
+                </span>
+            </td>
+            <td>{{ order.ordered_at|date:"D, d M Y H:i:s" }}</td>
+        </tr>
+    {% empty %}
+        <tr class="align-middle"><td colspan="5">No orders found.</td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
